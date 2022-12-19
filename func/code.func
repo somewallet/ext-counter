@@ -25,6 +25,7 @@
             .store_uint(public_key, 256)
         .end_cell()
     );
+    
 }
 
 ;; Get methods
