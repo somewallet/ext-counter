@@ -8,14 +8,17 @@
 
     var signature = msg_body~load_bits(512);
     var cs = msg_body;
+
     var msg_seqno = cs~load_uint(32);
     var ds = get_data().begin_parse();
     var (stored_seqno, public_key) = (ds~load_uint(32), ds~load_uint(256));
-    ds.end_parse();
+
+    ds.end_parse(); ;; (optional) выкинет исключение, если что-то осталось в памяти
     throw_unless(33, msg_seqno == stored_seqno);
     throw_unless(35, check_signature(slice_hash(msg_body), signature, public_key));
     accept_message();
-    cs~touch();
+
+    cs~touch(); ;; поставили msg_body на верх стека
 
     ;; Your code here
 

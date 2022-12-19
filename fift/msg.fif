@@ -8,15 +8,22 @@
 
 <b $1 parse-int 32 u, b>
 
-dup hashu wallet_pk ed25519_sign_uint
+dup hashu // в стеке сейчас хэш от msg_body
+wallet_pk
+ed25519_sign_uint // в стеке лежит подпись
 
 <b
-
+    // сейчас в стеке лежит билдер
     b{1000100} s, 
     wallet_addr addr, 
     0 Gram, 
-    b{00} s,
+    b{00} s, // в стеке лежит билдер
     swap B, 
+    // на этом этапе последний в стеке билдер и за ним идет ячейка с msg_body со строки 9
     swap <s s, 
 
-b> boc>B saveboc
+b> // на этом этапе в стеке ячейка
+
+boc>B // тут я сериализую последнюю в стеке ячейку
+
+saveboc 
