@@ -5,6 +5,7 @@
 }
 
 () recv_external(slice in_msg) impure {
+
     var signature = in_msg~load_bits(512);
     var cs = in_msg;
     var msg_seqno = cs~load_uint(32);
@@ -16,6 +17,7 @@
     accept_message();
     cs~touch();
 
+    ;; Your code here
 
     set_data(
         begin_cell()

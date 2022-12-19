@@ -7,8 +7,8 @@
 // 0 not project, just fif file
 1 constant is-project
 
-"/home/some_wallet/projects/external-counter/wallet" constant project-root
-"/home/some_wallet/projects/external-counter/wallet/build/boc/msg.boc" constant build-path
+"/home/some_wallet/projects/external-counter" constant project-root
+"/home/some_wallet/projects/external-counter/build/boc/msg.boc" constant build-path
 
 {
 
