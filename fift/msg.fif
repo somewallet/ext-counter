@@ -1,0 +1,22 @@
+"TonUtil.fif" include
+"Asm.fif" include
+
+// $1: seqno
+
+"build/contract.addr" load-address 2dup 2constant wallet_addr
+"build/contract.pk" load-keypair nip constant wallet_pk
+
+<b $1 parse-int 32 u, b>
+
+dup hashu wallet_pk ed25519_sign_uint
+
+<b
+
+    b{1000100} s, 
+    wallet_addr addr, 
+    0 Gram, 
+    b{00} s,
+    swap B, 
+    swap <s s, 
+
+b> boc>B saveboc
